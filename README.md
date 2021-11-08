@@ -1,14 +1,14 @@
 [![npm (scoped)](https://img.shields.io/npm/v/@project-serum/sol-wallet-adapter)](https://www.npmjs.com/package/@project-serum/sol-wallet-adapter)
 [![Build Status](https://travis-ci.com/project-serum/sol-wallet-adapter.svg?branch=master)](https://travis-ci.com/project-serum/sol-wallet-adapter)
 
-# sol-wallet-adapter
+# safe-wallet-adapter
 
-Library to allow Solana dApps to use third-party wallets to sign transactions.
+Library to allow SafeCoin dApps to use third-party wallets to sign transactions.
 
 ## Install
 
 ```bash
-npm install --save @project-serum/sol-wallet-adapter
+npm install --save @araviel/safe-wallet-adapter
 ```
 
 ## Usage
@@ -16,10 +16,10 @@ npm install --save @project-serum/sol-wallet-adapter
 ### Sign a transaction
 
 ```js
-import { Connection, SystemProgram, Transaction, clusterApiUrl } from '@solana/web3.js';
+import { Connection, SystemProgram, Transaction, clusterApiUrl } from '@safecoin/web3.js';
 
 let connection = new Connection(clusterApiUrl('devnet'));
-let providerUrl = 'https://www.sollet.io';
+let providerUrl = 'https://wallet.safecoin.org';
 let wallet = new Wallet(providerUrl);
 wallet.on('connect', publicKey => console.log('Connected to ' + publicKey.toBase58()));
 wallet.on('disconnect', () => console.log('Disconnected'));
@@ -45,7 +45,7 @@ See [example/src/App.js](https://github.com/serum-foundation/sol-wallet-adapter/
 ### Sign a message
 
 ```js
-const providerUrl = 'https://www.sollet.io';
+const providerUrl = 'https://wallet.safecoin.org/';
 const wallet = new Wallet(providerUrl);
 wallet.on('connect', publicKey => console.log('Connected to ' + publicKey.toBase58()));
 wallet.on('disconnect', () => console.log('Disconnected'));
@@ -64,15 +64,15 @@ See [create-react-library](https://github.com/transitive-bullshit/create-react-l
 
 ## Wallet Providers
 
-Wallet providers are third-party webapps that provide an API to retrieve the user's accounts and sign transactions with it. `sol-wallet-adapter` opens wallet providers in a popup and communicates with it using [JSON-RPC](https://www.jsonrpc.org/specification) over [`postMessage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage).
+Wallet providers are third-party webapps that provide an API to retrieve the user's accounts and sign transactions with it. `safe-wallet-adapter` opens wallet providers in a popup and communicates with it using [JSON-RPC](https://www.jsonrpc.org/specification) over [`postMessage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage).
 
 See [`spl-token-wallet`](https://github.com/serum-foundation/spl-token-wallet/blob/master/src/pages/PopupPage.js) for an example wallet provider implementation.
 
 The general flow is as follows:
 
-1. User selects a wallet provider to connect to, e.g. `https://www.sollet.io`
+1. User selects a wallet provider to connect to, e.g. `wallet.safecoin.org/`
 2. dApp opens the wallet provider in a popup, passing it the [origin](https://developer.mozilla.org/en-US/docs/Glossary/Origin) of the dApp and the desired network in the URL hash.
-    - e.g. `https://www.sollet.io/#origin=https://www.example.com&network=mainnet-beta`
+    - e.g. `https://wallet.safecoin.org//#origin=https://www.example.com&network=mainnet-beta`
 3. Wallet provider detects that `window.opener` is set and asks the user if they want to connect the wallet to the dApp.
     - The wallet UI should show the origin of the requesting dApp.
     - The origin can be retrieved from the URL hash using `new URLSearchParams(window.location.hash.slice(1)).get('origin')`.
@@ -106,7 +106,7 @@ let origin = params.get('origin');
 let network = params.get('network');
 ```
 
-### Requests from the wallet provider to the dApp (`sol-wallet-adapter`)
+### Requests from the wallet provider to the dApp (`safe-wallet-adapter`)
 
 #### connected
 
@@ -146,7 +146,7 @@ window.opener.postMessage({
 }, origin);
 ```
 
-### Requests from the dApp (`sol-wallet-adapter`) to the wallet provider
+### Requests from the dApp (`safe-wallet-adapter`) to the wallet provider
 
 #### signTransaction
 
