@@ -1,9 +1,9 @@
 {
-  "name": "@project-serum/sol-wallet-adapter",
+  "name": "@araviel-io/safe-wallet-adapter",
   "version": "0.2.5",
-  "description": "Library to allow Solana dApps to use third-party wallets to sign transactions",
+  "description": "Library to allow Safecoin dApps to use third-party wallets to sign transactions",
   "license": "Apache-2.0",
-  "repository": "project-serum/sol-wallet-adapter",
+  "repository": "git://github.com/araviel-io/safe-wallet-adapter.git",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "engines": {
