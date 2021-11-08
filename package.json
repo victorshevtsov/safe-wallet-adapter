@@ -10,9 +10,9 @@
     "node": ">=10"
   },
   "scripts": {
-    "build": "rm -rf dist && tsc -P tsconfig.build.json && tsc -P tsconfig.esm.json",
+    "build": "rimraf dist && tsc -P tsconfig.build.json && tsc -P tsconfig.esm.json",
     "start": "tsc --watch",
-    "clean": "rm -rf dist",
+    "clean": "rimraf dist",
     "prepare": "run-s clean build",
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
