@@ -1,6 +1,6 @@
 {
   "name": "@araviel/safe-wallet-adapter",
-  "version": "0.2.51",
+  "version": "0.2.53",
   "description": "Library to allow Safecoin dApps to use third-party wallets to sign transactions",
   "license": "Apache-2.0",
   "repository": {
@@ -26,10 +26,10 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
-    "@safecoin/web3.js": "^1.5.0"
+    "@safecoin/web3.js": "^1.29.4"
   },
   "devDependencies": {
-    "@safecoin/web3.js": "^1.29.2",
+    "@safecoin/web3.js": "^1.29.4",
     "@types/bs58": "^4.0.1",
     "@types/jest": "^26.0.23",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
